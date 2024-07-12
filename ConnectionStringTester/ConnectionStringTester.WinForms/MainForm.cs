@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using System.Text;
 
 namespace ConnectionStringTester.WinForms
 {
@@ -13,7 +14,9 @@ namespace ConnectionStringTester.WinForms
         private void btnConnect_Click(object sender, EventArgs e)
         {
             btnConnect.Enabled = false;
-            Connect(txtConnectionString.Text);
+            txtQuery.Enabled = false;
+            Connect(txtConnectionString.Text, txtQuery.Text);
+            txtQuery.Enabled = true;
             btnConnect.Enabled = true;
         }
 
@@ -22,7 +25,7 @@ namespace ConnectionStringTester.WinForms
             txtConsoleOutput.AppendText($"[{DateTime.Now.ToString("HH:mm:ss.fff")}] {text}\r\n");
         }
 
-        private void Connect(string connectionString)
+        private void Connect(string connectionString, string query)
         {
             try
             {
@@ -33,15 +36,24 @@ namespace ConnectionStringTester.WinForms
                     connection.Open();
                     Log("Connection opened!");
 
-                    string sql = "SELECT 1";
-
-                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
+                            Log("Query result:");
                             while (reader.Read())
                             {
-                                Log("Query executed!");
+                                var result = new StringBuilder();
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    result.Append(reader[i].ToString());
+                                    if ( i < reader.FieldCount - 1)
+                                    {
+                                        result.Append(",");
+                                    }
+                                }
+
+                                txtConsoleOutput.AppendText($" {result.ToString()}\r\n");
                             }
                         }
                     }

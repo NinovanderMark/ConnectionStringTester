@@ -35,10 +35,18 @@
             btnConnect = new Button();
             panel2 = new Panel();
             txtConsoleOutput = new TextBox();
+            panel5 = new Panel();
+            panel7 = new Panel();
+            txtQuery = new TextBox();
+            panel6 = new Panel();
+            label1 = new Label();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
+            panel5.SuspendLayout();
+            panel7.SuspendLayout();
+            panel6.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -106,8 +114,57 @@
             txtConsoleOutput.Multiline = true;
             txtConsoleOutput.Name = "txtConsoleOutput";
             txtConsoleOutput.ReadOnly = true;
+            txtConsoleOutput.ScrollBars = ScrollBars.Both;
             txtConsoleOutput.Size = new Size(800, 425);
             txtConsoleOutput.TabIndex = 0;
+            txtConsoleOutput.WordWrap = false;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(panel7);
+            panel5.Controls.Add(panel6);
+            panel5.Dock = DockStyle.Bottom;
+            panel5.Location = new Point(0, 428);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(800, 22);
+            panel5.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(txtQuery);
+            panel7.Dock = DockStyle.Fill;
+            panel7.Location = new Point(109, 0);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(691, 22);
+            panel7.TabIndex = 3;
+            // 
+            // txtQuery
+            // 
+            txtQuery.Dock = DockStyle.Fill;
+            txtQuery.Location = new Point(0, 0);
+            txtQuery.Name = "txtQuery";
+            txtQuery.Size = new Size(691, 23);
+            txtQuery.TabIndex = 0;
+            txtQuery.Text = "SELECT 'Success!'";
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(label1);
+            panel6.Dock = DockStyle.Left;
+            panel6.Location = new Point(0, 0);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(109, 22);
+            panel6.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.Dock = DockStyle.Fill;
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(109, 22);
+            label1.TabIndex = 1;
+            label1.Text = "Query to execute:";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -115,6 +172,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(panel5);
             Controls.Add(panel2);
             Controls.Add(panel1);
             MaximizeBox = false;
@@ -126,6 +184,10 @@
             panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            panel6.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -138,5 +200,10 @@
         private Button btnConnect;
         private Panel panel2;
         private TextBox txtConsoleOutput;
+        private Panel panel5;
+        private TextBox txtQuery;
+        private Panel panel7;
+        private Panel panel6;
+        private Label label1;
     }
 }
